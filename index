@@ -1,0 +1,2386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubh Communication - Mobile, Electronics & Home Appliances Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0056b3;
+            --primary-dark: #004494;
+            --primary-light: #4d8df0;
+            --secondary-color: #ff6b35;
+            --accent-color: #00b894;
+            --bg-white: #ffffff;
+            --bg-light: #f4f4f4;
+            --bg-dark: #1a1a2e;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.2);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --transition-slow: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --border-radius: 12px;
+            --border-radius-circle: 50%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--bg-white);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-light {
+            background-color: var(--bg-light);
+        }
+
+        .section-dark {
+            background-color: var(--bg-dark);
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            color: white;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:before {
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+        }
+
+        .btn-outline:hover {
+            color: white;
+        }
+
+        .btn-accent {
+            background: linear-gradient(90deg, var(--accent-color), #00d4aa);
+        }
+
+        .btn-accent:before {
+            background: linear-gradient(90deg, #00d4aa, var(--accent-color));
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-text span:first-child {
+            color: var(--primary-color);
+        }
+
+        .logo-text span:last-child {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 12rem 0 8rem;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 86, 179, 0.3), rgba(255, 107, 53, 0.2));
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            background: linear-gradient(90deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 850px;
+            margin: 0 auto 3rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text {
+            padding-right: 1rem;
+        }
+
+        .about-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: var(--transition);
+        }
+
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 2.5rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid transparent;
+        }
+
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05), rgba(255, 107, 53, 0.05));
+            z-index: 0;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .service-card:hover:before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--secondary-color);
+        }
+
+        /* Products Section */
+        .products-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        }
+
+        .products-container {
+            position: relative;
+        }
+
+        .products-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 2rem;
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .tab-btn i {
+            font-size: 1.2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            display: none;
+        }
+
+        .products-grid.active {
+            display: grid;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-feature {
+            background: var(--bg-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .product-action {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--primary-color);
+        }
+
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: rotate(10deg);
+        }
+
+        /* Brands Section */
+        .brands-section {
+            background: var(--bg-dark);
+            padding: 4rem 0;
+        }
+
+        .brands-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .brands-title {
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .brands-slider {
+            display: flex;
+            animation: slide 30s linear infinite;
+            gap: 4rem;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .brand-item {
+            flex-shrink: 0;
+            width: 150px;
+            height: 80px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            transition: var(--transition);
+        }
+
+        .brand-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .brand-item img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .brand-item:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .gallery-container {
+            position: relative;
+        }
+
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            height: 250px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            background: var(--secondary-color);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+
+        .lightbox-prev, .lightbox-next {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Why Choose Us Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .feature:hover .feature-icon {
+            transform: rotateY(180deg);
+        }
+
+        /* Contact & Location Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-icon {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .map-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-hover);
+            overflow: hidden;
+            height: 500px;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .map-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+        }
+
+        .map-btn {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--text-dark), #222);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .footer-logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .footer-logo-text span:first-child {
+            color: var(--primary-color);
+        }
+
+        .footer-logo-text span:last-child {
+            color: var(--secondary-color);
+        }
+
+        .footer-links h3, .footer-social h3 {
+            color: white;
+            margin-bottom: 1.8rem;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3:after, .footer-social h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            bottom: 0;
+            left: 0;
+            border-radius: 3px;
+        }
+
+        .footer-links ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: #cccccc;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transform: translateY(-8px) rotate(360deg);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaaaaa;
+            font-size: 0.9rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-content, .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero {
+                padding: 10rem 0 6rem;
+            }
+            
+            .map-container {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                z-index: 999;
+                gap: 1.5rem;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            .products-grid, .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero {
+                padding: 9rem 0 5rem;
+                background-attachment: scroll;
+            }
+            
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            
+            .service-card, .feature, .product-card {
+                padding: 1.5rem;
+            }
+            
+            .products-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo-container">
+                    <div class="logo-icon">SC</div>
+                    <div class="logo-text">
+                        <span>Shubh</span> <span>Communication</span>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="tel:+919876543210" class="btn">Call Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Your Trusted Mobile, Electronics & Home Appliances Partner</h1>
+                <p>Latest Smartphones, ACs, Refrigerators, Lighting Products, Expert Repairs, and Premium Accessories. Serving Bakshi Ka Talab (BKT) with quality and trust for years. Authorized JioMart Digital Partner.</p>
+                <div class="hero-btns">
+                    <a href="#products" class="btn">Explore Products</a>
+                    <a href="#contact" class="btn btn-outline">Visit Store</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-light">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-text slide-in-left">
+                    <h3>Serving BKT with Trust & Quality Since 2010</h3>
+                    <p>Located in the heart of Bakshi Ka Talab (BKT), Lucknow, Shubh Communication has been serving customers with trust and quality for years. We are an authorized JioMart Digital Partner, ensuring you get the best products directly from the catalog.</p>
+                    <p>From the latest smartphones to home appliances like ACs, refrigerators, and complete lighting solutions, we are your one-stop solution for all electronic and home needs. Our experienced team is committed to providing genuine products and exceptional customer service.</p>
+                    <p>We believe in building lasting relationships with our customers through transparency, quality service, and affordable pricing.</p>
+                    <a href="#products" class="btn" style="margin-top: 1.5rem;">View Products</a>
+                </div>
+                <div class="about-image slide-in-right">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Shubh Communication Store">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card scale-in">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Sales & Service</h3>
+                    <p>Deals in all major brands like Samsung, Vivo, Oppo, Realme, Xiaomi, and more. Get the latest smartphones with genuine warranty and best prices in BKT.</p>
+                </div>
+                
+                <div class="service-card scale-in">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Expert Repairs</h3>
+                    <p>Professional hardware and software repair services including screen replacement, battery issues, charging problems, and all types of mobile repairs.</p>
+                </div>
+                
+                <div class="service-card scale-in">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Home Appliances</h3>
+                    <p>Complete range of home appliances including ACs, refrigerators, washing machines, and all types of lighting solutions for your home and office.</p>
+                </div>
+                
+                <div class="service-card scale-in">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Digital Services</h3>
+                    <p>Online product ordering via JioMart Digital. Get products delivered to your doorstep with our convenient digital ordering system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="products-container">
+                <div class="products-tabs">
+                    <button class="tab-btn active" data-tab="mobile">
+                        <i class="fas fa-mobile-alt"></i> Mobile Phones
+                    </button>
+                    <button class="tab-btn" data-tab="ac">
+                        <i class="fas fa-snowflake"></i> Air Conditioners
+                    </button>
+                    <button class="tab-btn" data-tab="fridge">
+                        <i class="fas fa-blender"></i> Refrigerators
+                    </button>
+                    <button class="tab-btn" data-tab="lighting">
+                        <i class="fas fa-lightbulb"></i> Lighting Products
+                    </button>
+                    <button class="tab-btn" data-tab="accessories">
+                        <i class="fas fa-headphones"></i> Accessories
+                    </button>
+                </div>
+                
+                <!-- Mobile Phones -->
+                <div class="products-grid active" id="mobile-tab">
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Best Seller</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Samsung Galaxy S23">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Smartphone</span>
+                            <h3 class="product-title">Samsung Galaxy S23</h3>
+                            <div class="product-features">
+                                <span class="product-feature">8GB RAM</span>
+                                <span class="product-feature">256GB Storage</span>
+                                <span class="product-feature">50MP Camera</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹84,999</span>
+                                    <span class="price">₹79,999</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card scale-in">
+                        <div class="product-badge">New</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="iPhone 15 Pro">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Smartphone</span>
+                            <h3 class="product-title">Apple iPhone 15 Pro</h3>
+                            <div class="product-features">
+                                <span class="product-feature">6GB RAM</span>
+                                <span class="product-feature">128GB Storage</span>
+                                <span class="product-feature">48MP Camera</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹1,34,900</span>
+                                    <span class="price">₹1,29,999</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Trending</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="OnePlus 11">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Smartphone</span>
+                            <h3 class="product-title">OnePlus 11 5G</h3>
+                            <div class="product-features">
+                                <span class="product-feature">16GB RAM</span>
+                                <span class="product-feature">256GB Storage</span>
+                                <span class="product-feature">50MP+48MP+32MP</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹61,999</span>
+                                    <span class="price">₹56,999</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Air Conditioners -->
+                <div class="products-grid" id="ac-tab">
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Energy Saver</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1580651214613-f4692d6d138f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="LG AC">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Air Conditioner</span>
+                            <h3 class="product-title">LG 1.5 Ton 5 Star Inverter Split AC</h3>
+                            <div class="product-features">
+                                <span class="product-feature">5 Star Rating</span>
+                                <span class="product-feature">Inverter Compressor</span>
+                                <span class="product-feature">Copper Condenser</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹44,990</span>
+                                    <span class="price">₹41,499</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Best Seller</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1570212851230-2554ffbd8b85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Voltas AC">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Air Conditioner</span>
+                            <h3 class="product-title">Voltas 1.5 Ton 3 Star Split AC</h3>
+                            <div class="product-features">
+                                <span class="product-feature">3 Star Rating</span>
+                                <span class="product-feature">100% Copper</span>
+                                <span class="product-feature">Anti-Dust Filter</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹36,990</span>
+                                    <span class="price">₹33,999</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card scale-in">
+                        <div class="product-badge">New</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1560611926-eaafc406e460?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Daikin AC">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Air Conditioner</span>
+                            <h3 class="product-title">Daikin 2 Ton 5 Star Inverter Split AC</h3>
+                            <div class="product-features">
+                                <span class="product-feature">5 Star Rating</span>
+                                <span class="product-feature">Wi-Fi Enabled</span>
+                                <span class="product-feature">PM 2.5 Filter</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹68,500</span>
+                                    <span class="price">₹64,999</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Refrigerators -->
+                <div class="products-grid" id="fridge-tab">
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Best Seller</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1584568694244-8d01c5d5d829?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Samsung Refrigerator">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Refrigerator</span>
+                            <h3 class="product-title">Samsung 253L 3 Star Inverter Frost-Free</h3>
+                            <div class="product-features">
+                                <span class="product-feature">3 Star Rating</span>
+                                <span class="product-feature">Digital Inverter</span>
+                                <span class="product-feature">Frost Free</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹28,990</span>
+                                    <span class="price">₹26,499</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Energy Saver</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="LG Refrigerator">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Refrigerator</span>
+                            <h3 class="product-title">LG 260L 5 Star Smart Inverter</h3>
+                            <div class="product-features">
+                                <span class="product-feature">5 Star Rating</span>
+                                <span class="product-feature">Smart Inverter</span>
+                                <span class="product-feature">Door Cooling+</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹34,500</span>
+                                    <span class="price">₹31,999</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Large Capacity</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1571175443880-49e1d1b5d16b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Whirlpool Refrigerator">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Refrigerator</span>
+                            <h3 class="product-title">Whirlpool 340L Frost-Free Refrigerator</h3>
+                            <div class="product-features">
+                                <span class="product-feature">3 Star Rating</span>
+                                <span class="product-feature">Intellisense Inverter</span>
+                                <span class="product-feature">6th Sense Technology</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹38,999</span>
+                                    <span class="price">₹35,499</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lighting Products -->
+                <div class="products-grid" id="lighting-tab">
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Energy Saver</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="LED Bulbs">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Lighting</span>
+                            <h3 class="product-title">Philips LED Bulb Pack of 4 (9W)</h3>
+                            <div class="product-features">
+                                <span class="product-feature">9W Equivalent to 60W</span>
+                                <span class="product-feature">6500K Daylight</span>
+                                <span class="product-feature">1 Year Warranty</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹799</span>
+                                    <span class="price">₹649</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Smart Home</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1558618668-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="LED Strip Lights">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Lighting</span>
+                            <h3 class="product-title">Syska RGB LED Strip Light (5M)</h3>
+                            <div class="product-features">
+                                <span class="product-feature">16 Million Colors</span>
+                                <span class="product-feature">Voice Control</span>
+                                <span class="product-feature">Remote Control</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹1,499</span>
+                                    <span class="price">₹1,199</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Premium</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chandelier">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Lighting</span>
+                            <h3 class="product-title">Crystal Chandelier LED (24 Lights)</h3>
+                            <div class="product-features">
+                                <span class="product-feature">Crystal Design</span>
+                                <span class="product-feature">Dimmable</span>
+                                <span class="product-feature">Remote Control</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹12,999</span>
+                                    <span class="price">₹10,999</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Accessories -->
+                <div class="products-grid" id="accessories-tab">
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Best Seller</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1546054451-aa264e0e16c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mobile Accessories">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Accessories</span>
+                            <h3 class="product-title">Premium Mobile Accessories Combo</h3>
+                            <div class="product-features">
+                                <span class="product-feature">Tempered Glass</span>
+                                <span class="product-feature">Back Cover</span>
+                                <span class="product-feature">Charger</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹1,999</span>
+                                    <span class="price">₹1,499</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card scale-in">
+                        <div class="product-badge">New</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wireless Earbuds">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Accessories</span>
+                            <h3 class="product-title">Boat Airdopes 441</h3>
+                            <div class="product-features">
+                                <span class="product-feature">Wireless</span>
+                                <span class="product-feature">30H Playtime</span>
+                                <span class="product-feature">IPX7 Waterproof</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹2,499</span>
+                                    <span class="price">₹1,999</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card scale-in">
+                        <div class="product-badge">Fast Charging</div>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1594736797933-d6201cf5e7d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Power Bank">
+                        </div>
+                        <div class="product-content">
+                            <span class="product-category">Accessories</span>
+                            <h3 class="product-title">Mi 20000mAh Power Bank</h3>
+                            <div class="product-features">
+                                <span class="product-feature">20000mAh</span>
+                                <span class="product-feature">18W Fast Charging</span>
+                                <span class="product-feature">Dual Output</span>
+                            </div>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">₹2,199</span>
+                                    <span class="price">₹1,799</span>
+                                </div>
+                                <div class="product-action">
+                                    <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                                    <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands-section">
+        <div class="container">
+            <h3 class="brands-title">Trusted Brands We Deal In</h3>
+            <div class="brands-container">
+                <div class="brands-slider">
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung">
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Vivo_Logo.svg" alt="Vivo">
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Oppo_Logo.svg" alt="Oppo">
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/1/1d/Realme_logo.svg" alt="Realme">
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Xiaomi_logo_%282021-%29.svg" alt="Xiaomi">
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/LG_logo_%282015%29.svg" alt="LG">
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Voltas_logo.svg" alt="Voltas">
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Whirlpool_logo.svg" alt="Whirlpool">
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Philips_logo_new.svg" alt="Philips">
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Havells_logo.svg" alt="Havells">
+                    </div>
+                    <div class="brand-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Syska_LED_logo.svg" alt="Syska">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2>Our Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-filter fade-in">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="store">Store</button>
+                    <button class="filter-btn" data-filter="products">Products</button>
+                    <button class="filter-btn" data-filter="repair">Repair</button>
+                    <button class="filter-btn" data-filter="customers">Customers</button>
+                </div>
+                
+                <div class="gallery-grid">
+                    <!-- Store Images -->
+                    <div class="gallery-item" data-category="store">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Shubh Communication Store Front">
+                        <div class="gallery-overlay">
+                            <h3>Store Front</h3>
+                            <p>Our main store in BKT, Lucknow</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Products Images -->
+                    <div class="gallery-item" data-category="products">
+                        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mobile Phones Display">
+                        <div class="gallery-overlay">
+                            <h3>Latest Smartphones</h3>
+                            <p>Wide range of mobile brands available</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Repair Images -->
+                    <div class="gallery-item" data-category="repair">
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mobile Repair Service">
+                        <div class="gallery-overlay">
+                            <h3>Repair Center</h3>
+                            <p>Expert technicians at work</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Customers Images -->
+                    <div class="gallery-item" data-category="customers">
+                        <img src="https://images.unsplash.com/photo-1564429238817-393bd4286b2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Happy Customer">
+                        <div class="gallery-overlay">
+                            <h3>Happy Customers</h3>
+                            <p>Providing excellent service since 2010</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Products Images -->
+                    <div class="gallery-item" data-category="products">
+                        <img src="https://images.unsplash.com/photo-1580651214613-f4692d6d138f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AC Display">
+                        <div class="gallery-overlay">
+                            <h3>Air Conditioners</h3>
+                            <p>All major AC brands available</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Store Images -->
+                    <div class="gallery-item" data-category="store">
+                        <img src="https://images.unsplash.com/photo-1558618668-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Store Interior">
+                        <div class="gallery-overlay">
+                            <h3>Store Interior</h3>
+                            <p>Modern and clean shopping environment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox for Gallery -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <div class="lightbox-content">
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        </div>
+        <div class="lightbox-nav">
+            <button class="lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+            <button class="lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Why Choose Us Section -->
+    <section class="section-light">
+        <div class="container">
+            <h2>Why Choose Us</h2>
+            <div class="features">
+                <div class="feature slide-in-left">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div>
+                        <h3>Genuine Products</h3>
+                        <p>All our products are 100% genuine with official warranty. We are an authorized dealer for multiple brands and JioMart Digital Partner.</p>
+                    </div>
+                </div>
+                
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-indian-rupee-sign"></i>
+                    </div>
+                    <div>
+                        <h3>Affordable Prices</h3>
+                        <p>We offer competitive prices without compromising on quality. Special discounts for regular customers and students.</p>
+                    </div>
+                </div>
+                
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div>
+                        <h3>Experienced Technicians</h3>
+                        <p>Our team consists of certified technicians with 10+ years of experience in mobile repair and appliance service.</p>
+                    </div>
+                </div>
+                
+                <div class="feature slide-in-right">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h3>Quick Service</h3>
+                        <p>Most repairs are completed within hours, not days. We understand your need for working devices and prioritize fast service.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact & Location</h2>
+            <div class="contact-container">
+                <div class="contact-info slide-in-left">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Our Address</h3>
+                            <p>Chandrika Devi Mod (Turn), Near Post Office,<br>Bakshi Ka Talab (BKT), Lucknow,<br>Uttar Pradesh - 226201</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>Opening Hours</h3>
+                            <p><strong>Open Daily:</strong> 10:00 AM - 9:00 PM</p>
+                            <p>Open all days, including weekends and holidays</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Contact Us</h3>
+                            <p><strong>Phone:</strong> <a href="tel:+919876543210">+91 98765 43210</a></p>
+                            <p><strong>Email:</strong> <a href="mailto:info@shubhcommunication.com">info@shubhcommunication.com</a></p>
+                            <p><strong>WhatsApp:</strong> <a href="https://wa.me/919876543210">+91 98765 43210</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="map-btn">
+                        <a href="https://maps.google.com/?q=Chandrika+Devi+Mod+Bakshi+Ka+Talab+Lucknow" target="_blank" class="btn">Open in Google Maps</a>
+                        <a href="tel:+919876543210" class="btn btn-outline">Call Now</a>
+                    </div>
+                </div>
+                
+                <div class="map-container slide-in-right">
+                    <iframe 
+                        id="map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.634490168373!2d80.79883951462557!3d26.789378170221125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399be2f8f5d4e4a7%3A0x5c1c45dd4d3c5b1d!2sBakshi%20Ka%20Talab%2C%20Lucknow%2C%20Uttar%20Pradesh%20226201!5e0!3m2!1sen!2sin!4v1641299876543!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <div class="map-overlay">
+                        <h3>Find Us Easily</h3>
+                        <p>Near Chandrika Devi Mod, BKT, Lucknow</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">SC</div>
+                        <div class="footer-logo-text">
+                            <span>Shubh</span> <span>Communication</span>
+                        </div>
+                    </div>
+                    <p>Your trusted mobile, electronics & home appliances partner in BKT, Lucknow. Offering genuine products, expert repairs, and premium services since 2010. Authorized JioMart Digital Partner.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/919876543210" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <p style="margin-top: 1.5rem; color: #cccccc;">Stay updated with our latest offers and products</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Shubh Communication. All rights reserved.</p>
+                <p>Bakshi Ka Talab (BKT), Lucknow | JioMart Digital Partner | GSTIN: 09ABCDE1234F1Z5</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Scroll Animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const slideLeftElements = document.querySelectorAll('.slide-in-left');
+        const slideRightElements = document.querySelectorAll('.slide-in-right');
+        const scaleElements = document.querySelectorAll('.scale-in');
+        
+        const checkScroll = () => {
+            // Fade-in elements
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+            
+            // Slide-in-left elements
+            slideLeftElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+            
+            // Slide-in-right elements
+            slideRightElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+            
+            // Scale-in elements
+            scaleElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        // Check on load and scroll
+        window.addEventListener('load', checkScroll);
+        window.addEventListener('scroll', checkScroll);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.15)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.08)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+        
+        // Products Tabs Functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const productTabs = document.querySelectorAll('.products-grid');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and tabs
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                productTabs.forEach(tab => tab.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding tab
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // Gallery Filter Functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 400);
+                    }
+                });
+            });
+        });
+        
+        // Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        
+        let currentImageIndex = 0;
+        const galleryImages = Array.from(galleryItems).map(item => item.querySelector('img').src);
+        
+        // Open lightbox
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentImageIndex = index;
+                lightboxImg.src = galleryImages[currentImageIndex];
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Close lightbox
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close lightbox when clicking outside image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Navigate lightbox
+        lightboxPrev.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentImageIndex];
+        });
+        
+        lightboxNext.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentImageIndex];
+        });
+        
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            } else if (e.key === 'ArrowLeft') {
+                lightboxPrev.click();
+            } else if (e.key === 'ArrowRight') {
+                lightboxNext.click();
+            }
+        });
+        
+        // Map interaction
+        const map = document.getElementById('map');
+        const mapContainer = document.querySelector('.map-container');
+        
+        mapContainer.addEventListener('mouseenter', () => {
+            map.style.filter = 'brightness(1.1)';
+        });
+        
+        mapContainer.addEventListener('mouseleave', () => {
+            map.style.filter = 'brightness(1)';
+        });
+        
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.backgroundPosition = `center ${scrolled * 0.5}px`;
+            }
+        });
+        
+        // Animate elements on page load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // Add float animation to some elements
+            const serviceIcons = document.querySelectorAll('.service-icon');
+            serviceIcons.forEach((icon, index) => {
+                setTimeout(() => {
+                    icon.classList.add('float-animation');
+                }, index * 200);
+            });
+        });
+        
+        // Product action buttons
+        const actionButtons = document.querySelectorAll('.action-btn');
+        actionButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const icon = button.querySelector('i');
+                
+                if (icon.classList.contains('fa-shopping-cart')) {
+                    button.style.backgroundColor = 'var(--accent-color)';
+                    button.style.color = 'white';
+                    setTimeout(() => {
+                        button.style.backgroundColor = '';
+                        button.style.color = '';
+                    }, 1000);
+                    alert('Product added to cart!');
+                } else if (icon.classList.contains('fa-heart')) {
+                    button.style.backgroundColor = '#ff4757';
+                    button.style.color = 'white';
+                    icon.classList.toggle('fas');
+                    icon.classList.toggle('far');
+                }
+            });
+        });
+        
+        // Auto slide brands
+        const brandsSlider = document.querySelector('.brands-slider');
+        if (brandsSlider) {
+            setInterval(() => {
+                const firstBrand = brandsSlider.firstElementChild;
+                brandsSlider.style.transition = 'transform 0.5s ease';
+                brandsSlider.style.transform = 'translateX(-150px)';
+                
+                setTimeout(() => {
+                    brandsSlider.style.transition = 'none';
+                    brandsSlider.appendChild(firstBrand.cloneNode(true));
+                    brandsSlider.removeChild(firstBrand);
+                    brandsSlider.style.transform = 'translateX(0)';
+                }, 500);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
